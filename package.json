@@ -13,7 +13,8 @@
     "verify:release": "node scripts/verify-release.mjs",
     "keys:generate": "node scripts/keys.mjs",
     "worker:dev": "wrangler dev --config worker/wrangler.jsonc",
-    "worker:deploy": "wrangler deploy --config worker/wrangler.jsonc"
+    "worker:deploy": "wrangler deploy --config worker/wrangler.jsonc",
+    "test:browser": "npm run build && node scripts/test-browser.mjs"
   },
   "devDependencies": {
     "@types/chrome": "0.1.43",
@@ -22,6 +23,8 @@
     "sharp": "0.35.4",
     "typescript": "5.9.3",
     "vitest": "5.0.1",
-    "wrangler": "4.38.0"
+    "wrangler": "4.38.0",
+    "playwright": "1.63.0",
+    "@axe-core/playwright": "4.13.0"
   }
 }

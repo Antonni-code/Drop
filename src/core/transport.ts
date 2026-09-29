@@ -5,7 +5,7 @@ export function parseCommand(input: unknown): Command {
   return { action: string(value.action, 40, "Action"), data: value.data === undefined ? {} : object(value.data) };
 }
 export function trustedSender(sender: chrome.runtime.MessageSender, extensionId: string): boolean {
-  if (sender.id !== extensionId || sender.tab) return false;
+  if (sender.id !== extensionId) return false;
   try {
     const url = new URL(sender.url ?? "");
     return url.protocol === "chrome-extension:" && url.hostname === extensionId && ["/popup.html", "/library.html"].includes(url.pathname);

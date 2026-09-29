@@ -8,3 +8,5 @@
 - Use short, simple commits. No co-author trailers or assistant names in commit messages.
 - Run `npm run check` for substantive changes and browser verification for interactions.
 - Mark unconfigured or unpublished services honestly. Do not replace config placeholders with guesses.
+
+- Use a branch for each phase. Merge only after its required checks pass.
