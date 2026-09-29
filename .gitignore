@@ -1,0 +1,13 @@
+node_modules/
+dist/
+release/
+.test-build/
+.wrangler/
+.env*
+!.env.example
+*.local.json
+*.private.json
+*.pem
+*.key
+playwright-report/
+test-results/
