@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { applyBasic } from "../src/core/library";
 import { emptyState, parseState } from "../src/core/model";
-import { Repository, STATE_KEY } from "../src/platform/repository";
+import { Repository, STATE_KEY, BACKUP_KEY } from "../src/platform/repository";
 import { trustedSender } from "../src/core/transport";
 
 describe("local library", () => {
@@ -40,6 +40,15 @@ describe("local library", () => {
     const ext = "a".repeat(32);
     expect(trustedSender({ id: ext, url: `chrome-extension://${ext}/popup.html` }, ext)).toBe(true);
     expect(trustedSender({ id: ext, url: "https://example.com" }, ext)).toBe(false);
-    expect(trustedSender({ id: ext, url: `chrome-extension://${ext}/popup.html`, tab: {} as chrome.tabs.Tab }, ext)).toBe(false);
+    expect(trustedSender({ id: ext, url: `chrome-extension://${ext}/library.html`, tab: {} as chrome.tabs.Tab }, ext)).toBe(true);
+    expect(trustedSender({ id: ext, url: `chrome-extension://${ext}/unknown.html`, tab: {} as chrome.tabs.Tab }, ext)).toBe(false);
+  });
+  it("erases the recovery snapshot when the user explicitly clears the library", async () => {
+    const storage: Record<string, unknown> = {};
+    const repo = new Repository({ get: async key => storage[key], set: async value => { Object.assign(storage, value); } });
+    await repo.update(s => applyBasic(s, "save", { content: "Remove permanently" }, false));
+    await repo.update(s => applyBasic(s, "clear", { confirm: "DELETE" }, false), false);
+    expect((await repo.read()).clips).toEqual([]);
+    expect(storage[BACKUP_KEY]).toEqual(emptyState());
   });
 });

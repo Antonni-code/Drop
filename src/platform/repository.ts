@@ -17,12 +17,12 @@ export class Repository {
     return raw === undefined ? emptyState() : parseState(raw);
   }
   read(): Promise<State> { return this.enqueue(() => this.load()); }
-  update(transform: (state: State) => State | Promise<State>): Promise<State> {
+  update(transform: (state: State) => State | Promise<State>, retainBackup = true): Promise<State> {
     return this.enqueue(async () => {
       const before = await this.load();
       const after = parseState(await transform(before));
       // A single set atomically replaces the library and its prior snapshot.
-      await this.storage.set({ [BACKUP_KEY]: before, [STATE_KEY]: after });
+      await this.storage.set({ [BACKUP_KEY]: retainBackup ? before : emptyState(), [STATE_KEY]: after });
       return after;
     });
   }
