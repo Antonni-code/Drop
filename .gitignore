@@ -11,3 +11,5 @@ release/
 *.key
 playwright-report/
 test-results/
+
+keys/
