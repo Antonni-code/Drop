@@ -10,6 +10,16 @@ The browser harness explicitly adapts `chrome.runtime`/storage messaging to test
 
 The preview ZIP’s structure and CRC were verified independently with Python `zipfile`; it contains built assets and manifest only. The production gate correctly rejects missing production configuration.
 
+## Cloudflare bundle and live portfolio
+
+On September 30, 2026, `wrangler deploy --dry-run --config worker/wrangler.jsonc` successfully bundled the Worker with its rate-limit binding (8.52 KiB before gzip). This is a local bundle check; it does not deploy a service or validate real Cloudflare/Creem credentials. In a restricted workspace, `WRANGLER_LOG_PATH=.test-build/wrangler.log` keeps CLI logs in the project.
+
+Portfolio PRs [#39](https://github.com/Antonni-code/nxtjs_portfolio/pull/39) and [#40](https://github.com/Antonni-code/nxtjs_portfolio/pull/40) merged into the existing `master` branch. Vercel preview builds and both production deployments passed. The deployed `/drop` page passed real-browser checks at 375, 768, 1440 and 1920 px, with no horizontal overflow, broken images or automated axe violations. FAQ expansion, mobile policy pages, support links, exact download bytes and absence of uncaught client errors also passed. The actual portfolio project card, screenshot, details and `/drop` link were verified in the live browser, confirming the one-time project insertion rendered.
+
+Live checking found that the portfolio's global link reset removed default policy-link underlines. PR #40 added explicit scoped underlines; both deployed policy routes were rechecked and passed axe. The Vercel preview URL requires sign-in, so this fix was validated against live styles with a scoped CSS override before merge and against the actual production deployment afterward. No sign-in protection was bypassed.
+
+Public HTTPS checks returned 200 for the homepage, product, both policy routes and the preview ZIP. The deployed 27,371-byte ZIP matches the independently verified local package: SHA-256 `1ac60f79244fc97e40ef51ef7cee38dba6f61435ef3dd96a48bc65f135f8b57b`. These website checks do not exercise unrelated admin/CMS flows, native MV3 APIs or purchases.
+
 ## Reproduce
 
 ```sh
