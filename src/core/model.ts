@@ -3,6 +3,8 @@ export const MAX_CLIPS = 5_000;
 export const MAX_COLLECTIONS = 100;
 export const MAX_CLIP_BYTES = 16_384;
 export const MAX_STATE_BYTES = 4_000_000;
+// Pretty-printed exports have additional whitespace; parsed state still stays under 4 MB.
+export const MAX_BACKUP_BYTES = 8_000_000;
 export const COLORS = ["blue", "violet", "amber", "green", "rose", "slate"] as const;
 export const ICONS = ["folder", "work", "code", "heart", "link", "spark"] as const;
 export type Color = (typeof COLORS)[number];

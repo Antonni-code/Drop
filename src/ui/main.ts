@@ -1,5 +1,5 @@
 import { config, WEBSITE } from "../config";
-import { COLORS, ICONS, DropError, MAX_STATE_BYTES, titleOf, type Clip, type Collection, type Snapshot } from "../core/model";
+import { COLORS, ICONS, DropError, MAX_BACKUP_BYTES, titleOf, type Clip, type Collection, type Snapshot } from "../core/model";
 import { send } from "../core/transport";
 import { icon } from "./icons";
 
@@ -176,7 +176,7 @@ $("#collections").onclick = event => {
 $<HTMLInputElement>("#import-file").onchange = event => {
   const input = event.target as HTMLInputElement, file = input.files?.[0]; input.value = ""; if (!file) return;
   void run(async () => {
-    if (file.size > MAX_STATE_BYTES) throw new DropError("size", "Choose a Drop JSON backup smaller than 4 MB.");
+    if (file.size > MAX_BACKUP_BYTES) throw new DropError("size", "Choose a Drop JSON backup smaller than 8 MB.");
     const json = await file.text();
     show("Bring your clips over", `<p class="helper">Import ${esc(file.name)}? Clips are merged into your shelf. Duplicate text is skipped, and existing clips stay unchanged. Invalid backups are rejected in full.</p><button id="confirm-import" class="primary full">Merge backup</button>`);
     $("#confirm-import").onclick = event => void run(async () => { await act("import", { json }); dialog.close(); notify("Your backup is on the shelf."); }, event.currentTarget as HTMLButtonElement);
