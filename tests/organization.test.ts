@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { applyOrganization, exportLibrary } from "../src/core/organization";
 import { applyBasic } from "../src/core/library";
-import { emptyState } from "../src/core/model";
+import { bytes, emptyState, MAX_STATE_BYTES, parseState } from "../src/core/model";
 
 describe("Pro organization", () => {
   it("keeps every protected command behind entitlement checks", () => {
@@ -41,3 +41,16 @@ describe("Pro organization", () => {
     expect(state.clips[0]!.content).toBe("Three");
   });
 });
+
+ it("round-trips a near-capacity library through its formatted backup", () => {
+  const state = emptyState();
+  state.clips = Array.from({ length: 300 }, () => ({ id: crypto.randomUUID(), content: "", title: "", kind: "text" as const, collectionId: null, pinned: false, createdAt: 0, updatedAt: 0, usedAt: 0 }));
+  const length = Math.floor((MAX_STATE_BYTES - bytes(JSON.stringify(state)) - 2000) / 300);
+  for (const [index, clip] of state.clips.entries()) clip.content = String(index).padStart(3, "0") + "x".repeat(length - 3);
+  parseState(state);
+  const backup = exportLibrary(state);
+  expect(bytes(backup)).toBeGreaterThan(MAX_STATE_BYTES);
+  const restored = applyOrganization(emptyState(), "import", { json: backup }, true);
+  expect(restored.clips).toHaveLength(300);
+  expect(restored.clips.map(c => c.content)).toEqual(state.clips.map(c => c.content));
+ });

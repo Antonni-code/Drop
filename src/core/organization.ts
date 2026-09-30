@@ -1,4 +1,4 @@
-import { bytes, DropError, getClip, id, MAX_STATE_BYTES, object, parseCollection, parseState, requirePro, string, type State } from "./model";
+import { bytes, DropError, getClip, id, MAX_BACKUP_BYTES, object, parseCollection, parseState, requirePro, string, type State } from "./model";
 
 export function applyOrganization(state: State, action: string, data: Record<string, unknown>, pro: boolean): State {
   requirePro(pro);
@@ -24,8 +24,8 @@ export function applyOrganization(state: State, action: string, data: Record<str
     next.collections = next.collections.filter(x => x.id !== collectionId);
     for (const clip of next.clips) if (clip.collectionId === collectionId) clip.collectionId = null;
   } else if (action === "import") {
-    const input = string(data.json, MAX_STATE_BYTES, "Backup");
-    if (bytes(input) > MAX_STATE_BYTES) throw new DropError("size", "The backup exceeds 4 MB.");
+    const input = string(data.json, MAX_BACKUP_BYTES, "Backup");
+    if (bytes(input) > MAX_BACKUP_BYTES) throw new DropError("size", "The backup exceeds 8 MB.");
     let raw: unknown;
     try { raw = JSON.parse(input); } catch { throw new DropError("invalid", "Choose a valid Drop JSON backup."); }
     const backup = object(raw);
