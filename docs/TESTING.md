@@ -37,3 +37,7 @@ Optional `CHROMIUM_PATH`, `PLAYWRIGHT_MODULE`, `AXE_MODULE` select an existing s
 11. Simulate activation lost response and local storage failure. Confirm support can release the instance and reset pending state without duplicate slots or clip deletion.
 
 Do not mark unchecked items as passed. Record the browser version, extension version, mode, Worker deployment and stable ID used; keep keys and private text out of the record.
+
+## Remote CI status
+
+The workflow is committed with read-only repository permission and pinned actions. The first GitHub Actions run did not start a runner or execute any step: GitHub annotated it with “The job was not started because your account is locked due to a billing issue.” Local typecheck, unit/integration, build and browser verification passed separately. Resolve the GitHub billing lock and rerun CI; this account restriction has not been changed by the implementation.
