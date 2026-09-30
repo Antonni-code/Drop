@@ -8,7 +8,7 @@ A little less retyping. A private clipboard shelf for the text, links and code y
 
 Download the [free preview](https://antonni-code.dev/drop/drop-v0.1.0-preview.zip), unzip it, open `chrome://extensions`, enable Developer mode, choose **Load unpacked**, and select the unzipped folder containing `manifest.json`. Pin Drop in the browser toolbar. Requires Chrome or a compatible Chromium browser 128+.
 
-If the portfolio download has not deployed yet, build from source:
+Alternatively, build from source:
 
 ```sh
 npm ci
@@ -64,4 +64,4 @@ Public source is available for inspection. No open-source reuse license is grant
 
 ## Commits
 
-Each accomplishment has a short commit subject, without co-author trailers. Remaining work uses phase branches and reviewed pull requests; merge after the relevant checks pass.
+Use `Build (Completed) : Drop - <accomplishment>` or `Improve (Completed) : Drop - <accomplishment>`, without names or co-author trailers. Work uses phase branches and reviewed pull requests; merge after the relevant checks pass. See the [phase record](docs/plans/2026-09-29-drop-implementation.md).

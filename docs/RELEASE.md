@@ -27,7 +27,7 @@ The gate checks public-only configuration, production mode/URL, exact host permi
 
 ## Branches and commits
 
-One phase branch; short commits for each accomplishment; PR targeting Drop `main`. Include concrete behavior and checks. Merge only after applicable checks pass and no unresolved blocker invalidates the change. Preserve commits with a merge commit, without co-author trailers/names in message text.
+One phase branch; a concise `Build (Completed) : Drop - <accomplishment>` or `Improve (Completed) : Drop - <accomplishment>` commit for each accomplishment; PR targeting Drop `main`. Include concrete behavior and checks. Merge only after applicable checks pass and no unresolved blocker invalidates the change. Preserve commits with a merge commit, without co-author trailers/names in message text.
 
 Portfolio changes target its existing `master` branch to preserve deployment configuration. They add routes, static assets and one idempotent project insertion using existing schema. Do not rename that branch or run database schema migrations for this change.
 
