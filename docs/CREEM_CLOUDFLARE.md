@@ -4,7 +4,7 @@ The code is implemented; these are account configuration steps. Keep test and pr
 
 ## 1. Create the test product
 
-In Creem test mode create **Drop Pro** as a one-time software purchase. Proposed price: **US$5.99**. Description: “A private clipboard shelf with more room for clips, collections, favorites, custom names, JSON backups and Quick Paste in supported web fields.” Enable license-key delivery, choose and disclose the activation allowance (one browser installation is a simple initial choice), and verify receipt/key delivery. No recurring billing is required.
+In Creem test mode create **Drop Pro** as a one-time software purchase. Proposed price: **US$2.99**. Description: “A private clipboard shelf with more room for clips, collections, favorites, custom names, JSON backups and Quick Paste in supported web fields.” Enable license-key delivery, choose and disclose the activation allowance (one browser installation is a simple initial choice), and verify receipt/key delivery. No recurring billing is required.
 
 Copy the exact Drop product ID, test API key and hosted test payment link from your dashboard. Do not paste the API key into the extension config or public repository. Product URL: https://antonni-code.dev/drop. Privacy: https://antonni-code.dev/drop/privacy. Terms: https://antonni-code.dev/drop/terms.
 
@@ -51,7 +51,7 @@ Copy `extension.config.example.json` to the ignored `extension.config.local.json
   "mode": "test",
   "publicJwk": { "kty": "EC", "crv": "P-256", "x": "COPY_PUBLIC_X", "y": "COPY_PUBLIC_Y", "ext": true, "key_ops": ["verify"] },
   "checkoutUrl": "YOUR-ACTUAL-CREEM-TEST-PAYMENT-LINK",
-  "price": "$5.99"
+  "price": "$2.99"
 }
 ```
 

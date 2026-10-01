@@ -6,9 +6,7 @@ A little less retyping. A private clipboard shelf for the text, links and code y
 
 ## Try Drop
 
-Download the [free preview](https://antonni-code.dev/drop/drop-v0.1.0-preview.zip), unzip it, open `chrome://extensions`, enable Developer mode, choose **Load unpacked**, and select the unzipped folder containing `manifest.json`. Pin Drop in the browser toolbar. Requires Chrome or a compatible Chromium browser 128+.
-
-Alternatively, build from source:
+Chrome Web Store availability will be announced at [Drop’s product page](https://antonni-code.dev/drop). There is no public ZIP download. Developers can inspect and build the source locally:
 
 ```sh
 npm ci
@@ -29,7 +27,7 @@ Load the resulting `dist` folder using the same steps. Never load the source fol
 | Keyboard shortcuts | Quick Paste in supported focused web fields |
 | Raw recovery download | Same local storage and privacy boundaries |
 
-Proposed price: **US$5.99 once**, configurable before sales. Device safeguards: 5,000 clips, 100 collections, 4 MB parsed library and 16 KB per clip. Formatted JSON backups may be up to 8 MB; imported contents still have to meet every library safeguard. Existing clips stay readable, editable and copyable if Pro pauses.
+Proposed price: **US$2.99 once**, configurable before sales. Device safeguards: 5,000 clips, 100 collections, 4 MB parsed library and 16 KB per clip. Formatted JSON backups may be up to 8 MB; imported contents still have to meet every library safeguard. Existing clips stay readable, editable and copyable if Pro pauses.
 
 Open Drop with `Alt+Shift+D`; choose a Quick Paste clip with `Alt+Shift+V`. Inside Drop: `/` or `Ctrl/⌘+K` searches, `N` opens a new clip, and `Ctrl/⌘+Enter` saves the editor. Change conflicting browser shortcuts at `chrome://extensions/shortcuts`.
 
