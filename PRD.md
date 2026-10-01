@@ -10,7 +10,7 @@ Useful replies, links and code get lost across notes and tabs. Drop provides a s
 
 People who reuse short pieces of text while working on the web: developers, support workers, creators and anyone who frequently retypes the same lines. Chrome/Chromium 128+ is the V0 platform. Native apps and arbitrary protected/rich browser editors are outside Quick Paste scope.
 
-Free: five clips, copy, search, recent-first order, manual entry/paste, deliberate context capture and shortcuts. Pro: saves beyond five, collections, favorites, custom titles, colors/icons, type filtering, manual order, JSON import/export and supported Quick Paste. One-time monetization; proposed US$5.99 price, final price and activation allowance configured before sale.
+Free: five clips, copy, search, recent-first order, manual entry/paste, deliberate context capture and shortcuts. Pro: saves beyond five, collections, favorites, custom titles, colors/icons, type filtering, manual order, JSON import/export and supported Quick Paste. One-time monetization; proposed US$2.99 price, final price and activation allowance configured before sale.
 
 Non-goals: accounts, collaboration, AI, cloud clip storage, automatic clipboard history, a password vault, arbitrary editor support or universal/native desktop pasting.
 
