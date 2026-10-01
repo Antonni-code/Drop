@@ -25,3 +25,4 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
       - run: node scripts/package.mjs
+      - run: npm run verify:package

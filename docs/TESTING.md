@@ -22,12 +22,21 @@ Public HTTPS checks returned 200 for the homepage, product, both policy routes a
 
 ## Reproduce
 
+### October 1 continuation
+
+Rechecked the current `main` implementation: 24 unit/integration tests, typecheck, build and all 25 browser checks passed. The independently verified preview remains 27,371 bytes with the same SHA-256 recorded above; no extension or payment logic changed.
+
+Release ZIP verification now runs automatically during `npm run package` and in CI after packaging. Six negative archive checks passed: extra private-key filename, missing file, duplicate filename, modified build bytes, wrong checksum and truncated ZIP were all rejected. Python's standard ZIP reader also checks each extracted entry's CRC.
+
+Native MV3 remains unchecked: the full Playwright Chrome download returned an incomplete/non-ZIP response, and the available headless-shell binary did not load an extension service worker. The existing browser checks therefore still use their explicit adapter. The production gate still rejects the absent real local configuration. This continuation did not configure billing, publish to the store, change GitHub account billing, or set the GitHub About sidebar.
+
 ```sh
 npm ci
 npm run check
 npx playwright install chromium
 npm run test:browser
 npm run package
+npm run verify:package
 ```
 
 Optional `CHROMIUM_PATH`, `PLAYWRIGHT_MODULE`, `AXE_MODULE` select an existing supported local browser/package installation. The harness uses a temporary localhost server and a simulated license flag only in test code; these are not part of `dist`.

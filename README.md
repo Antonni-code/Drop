@@ -35,7 +35,7 @@ Open Drop with `Alt+Shift+D`; choose a Quick Paste clip with `Alt+Shift+V`. Insi
 
 ## Development
 
-Node.js 22+ and npm. The extension uses TypeScript, bundled vanilla DOM/CSS, Chrome Manifest V3, Web Crypto and a Cloudflare Worker. No runtime UI framework, account system or clip server.
+Node.js 22+ and npm; Python 3 for independent release ZIP verification (standard library only). The extension uses TypeScript, bundled vanilla DOM/CSS, Chrome Manifest V3, Web Crypto and a Cloudflare Worker. No runtime UI framework, account system or clip server.
 
 ```sh
 npm ci
@@ -46,6 +46,8 @@ npm run package
 ```
 
 `npm run check` typechecks, tests and builds. Browser verification uses the actual built interface and clipboard with a declared extension API adapter. It is separate from native MV3 testing. See [TESTING](docs/TESTING.md).
+
+`npm run package` also verifies the preview ZIP with Python's standard ZIP reader: exact built assets, CRCs, permission boundaries and SHA-256. Use `npm run verify:package -- path/to/archive.zip` to verify another package against the current `dist` build.
 
 `npm run verify:release` intentionally fails until real production configuration exists. `node scripts/package.mjs --production` runs that gate before creating a production ZIP. A static gate cannot prove a purchase flow or account approval.
 
