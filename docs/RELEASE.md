@@ -4,6 +4,8 @@
 
 `npm run package` produces `release/drop-v0.1.0-preview.zip` and SHA-256. The default config has no license origin, checkout or keys. This is an honest Free preview and must not be uploaded as the configured paid production build.
 
+Packaging requires Python 3 and verifies the archive independently of the ZIP writer. It rejects extra/missing/duplicate files, changed build assets, invalid CRCs or checksums, unexpected permissions and broad host access. Only the 12 expected built assets are allowed. Run `npm run verify:package` to repeat this check without rebuilding.
+
 ## Before paid distribution
 
 - Native smoke tests in [TESTING](TESTING.md) completed with stable extension ID.
@@ -21,6 +23,7 @@ npm run check
 npm run test:browser
 npm run verify:release
 node scripts/package.mjs --production
+npm run verify:package -- release/drop-v0.1.0-production.zip
 ```
 
 The gate checks public-only configuration, production mode/URL, exact host permissions and a hash tying the build to the current config. It scans built text for obvious secret patterns. Passing it is a static configuration check; it does not prove payment, product access or merchant approval.
